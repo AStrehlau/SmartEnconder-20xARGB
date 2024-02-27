@@ -15,9 +15,9 @@ There is a complete BOM (except the very long headers/wire and M3x25m screws!) f
 The EMI filter on the ESP32 PCB (L1, L2 and C4) can be left out and Jumper JP1 soldered instead, although it is not recommended. Doing this has no effect on the functionality.<br>
 Especially if you don't plan on running intensive animations on the LEDs the 20 bypass capacitors are definitely overkill (even though the datasheet might disagree). If you want to save on parts/ time spent placing them you can just place C14, C15 and C16 which was more than enough in my testing even just one of them might work for you.
 
-<img src="/images/PCBs_unpopulated.jpeg" alt="WiFiBTPCB" width="900">
+<img src="/images/PCBs_unpopulated.jpeg" alt="Unpopulated PCBs" width="900">
 
-<img src="/images/PCBStackup.jpeg" alt="PCB_Stackup" width="400">
+<img src="/images/PCB_Stackup.jpeg" alt="PCBStackup" width="400">
 
 ## 3D printed case
 
@@ -26,7 +26,7 @@ The holes in the knob are meant to be filled with regular 1.75mm diameter transp
 The anti-bleed part can simply be put on the LEDs making sure not to damage them.<br>
 For assembly you only need the printed parts including spacers and M3x25mm screws, preferably with a flat underside.
 
-<img src="/images/FinishedEncoder.jpeg" alt="FinishedEncoder" width="400">
+<img src="/images/FinishedEncoder.jpeg" alt="Finished Encoder" width="400">
 
 ## Software 
 
