@@ -1,6 +1,6 @@
 # SmartEncoder-20xARGB
 
-This "SmartEncoder" uses 20 adressable LEDs (SK6805-EC15 or potentially XL-1615RGBC-WS2812B) to visualize the set point of the encoder. The SmartEncoder boasts WiFI and Bluetooth capability using the ESP32, which makes it viable for Smart Home and PC control applications.
+This "SmartEncoder" uses 20 adressable LEDs (SK6805-EC15 or potentially XL-1615RGBC-WS2812B) to visualize the set point of the encoder. The SmartEncoder boasts WiFI and Bluetooth capability using the ESP32, which makes it viable for Smart Home and PC control applications.<br>
 It should be noted that stock Windows does not normally have the capability to send the current volume level over BT, which is why a PC side software to take care of that will be uploaded  in the future for use as a BT PC volume knob.
 
 <img src="/images/Lightshow.gif" alt="Lightshow" width="400">
