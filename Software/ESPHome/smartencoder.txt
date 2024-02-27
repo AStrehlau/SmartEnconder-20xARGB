@@ -1,0 +1,263 @@
+#add the following after the automatically generated part
+
+status_led:
+  pin: GPIO2
+
+sensor:
+  - platform: rotary_encoder
+    name: "SmartEncoderEncoder"
+    id: smartencoderencoder
+    pin_a: 33
+    pin_b: 32
+    min_value: 0
+    max_value: 100
+    publish_initial_value: true
+    restore_mode: always_zero
+    on_clockwise:
+      if:
+        condition:
+          sensor.in_range:
+            id: smartencoderencoder
+            below: 32
+        then:
+          - light.addressable_set:
+              id: smartencoderleds
+              range_from: 0
+              range_to: 19
+              red: 0%
+              green: 0%
+              blue: 0%
+          - light.addressable_set:
+              id: smartencoderleds
+              range_from: !lambda return (17 - (id(smartencoderencoder).state / 2.0625));
+              range_to: 17
+              red: 30%
+              green: 0%
+              blue: 0%
+        else:
+          if:
+            condition:
+              sensor.in_range:
+                id: smartencoderencoder
+                below: 65
+            then:
+              - light.addressable_set:
+                  id: smartencoderleds
+                  range_from: 0
+                  range_to: 19
+                  red: 0%
+                  green: 0%
+                  blue: 0%
+              - light.addressable_set:
+                  id: smartencoderleds
+                  range_from: !lambda return (17 - ((id(smartencoderencoder).state - 33) / 2.0625));
+                  range_to: 17
+                  red: 0%
+                  green: 30%
+                  blue: 0%
+            else:
+              if:
+                condition:
+                  sensor.in_range:
+                    id: smartencoderencoder
+                    below: 99
+                then:
+                  - light.addressable_set:
+                      id: smartencoderleds
+                      range_from: 0
+                      range_to: 19
+                      red: 0%
+                      green: 0%
+                      blue: 0%
+                  - light.addressable_set:
+                      id: smartencoderleds
+                      range_from: !lambda return (17 - ((id(smartencoderencoder).state - 66) / 2.0625));
+                      range_to: 17
+                      red: 0%
+                      green: 0%
+                      blue: 30%
+
+
+    on_anticlockwise:
+      if:
+        condition:
+          sensor.in_range:
+            id: smartencoderencoder
+            below: 1
+        then:
+          - light.addressable_set:
+              id: smartencoderleds
+              range_from: 0
+              range_to: 19
+              red: 0%
+              green: 0%
+              blue: 0%
+        else:
+          if:
+            condition:
+              sensor.in_range:
+                id: smartencoderencoder
+                below: 2
+            then:
+              - light.addressable_set:
+                  id: smartencoderleds
+                  range_from: 0
+                  range_to: 19
+                  red: 0%
+                  green: 0%
+                  blue: 0%
+              - light.addressable_set:
+                  id: smartencoderleds
+                  range_from: 17
+                  range_to: 17
+                  red: 30%
+                  green: 0%
+                  blue: 0%
+            else:
+              if:
+                condition:
+                  sensor.in_range:
+                    id: smartencoderencoder
+                    below: 33
+                then:
+                  - light.addressable_set:
+                      id: smartencoderleds
+                      range_from: 0
+                      range_to: 19
+                      red: 0%
+                      green: 0%
+                      blue: 0%
+                  - light.addressable_set:
+                      id: smartencoderleds
+                      range_from: !lambda return (17 - ((id(smartencoderencoder).state - 1) / 2.0625));
+                      range_to: 17
+                      red: 30%
+                      green: 0%
+                      blue: 0%
+                else:
+                  if:
+                    condition:
+                      sensor.in_range:
+                        id: smartencoderencoder
+                        below: 66
+                    then:
+                      - light.addressable_set:
+                          id: smartencoderleds
+                          range_from: 0
+                          range_to: 19
+                          red: 0%
+                          green: 0%
+                          blue: 0%
+                      - light.addressable_set:
+                          id: smartencoderleds
+                          range_from: !lambda return (17 - ((id(smartencoderencoder).state - 34) / 2.0625));
+                          range_to: 17
+                          red: 0%
+                          green: 30%
+                          blue: 0%
+                    else:
+                      if:
+                        condition:
+                          sensor.in_range:
+                            id: smartencoderencoder
+                            below: 100
+                        then:
+                          - light.addressable_set:
+                              id: smartencoderleds
+                              range_from: 0
+                              range_to: 19
+                              red: 0%
+                              green: 0%
+                              blue: 0%
+                          - light.addressable_set:
+                              id: smartencoderleds
+                              range_from: !lambda return (17 - ((id(smartencoderencoder).state - 67) / 2.0625));
+                              range_to: 17
+                              red: 0%
+                              green: 0%
+                              blue: 30%
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 25
+      mode: INPUT
+      inverted: true
+    name: "SmartEncoderButton"
+
+    on_multi_click:
+    #Double Click
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 0.4s
+        - ON for at most 1s
+        - OFF for at least 0.2s
+      then:
+        - sensor.rotary_encoder.set_value:
+            id: smartencoderencoder
+            value: 100
+        - light.addressable_set:
+            id: smartencoderleds
+            range_from: 0
+            range_to: 19
+            red: 0%
+            green: 0%
+            blue: 0%
+        - light.addressable_set:
+            id: smartencoderleds
+            range_from: 1
+            range_to: 17
+            red: 0%
+            green: 0%
+            blue: 30%
+    #Single Click
+    - timing:
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        if:
+          condition:
+            sensor.in_range:
+              id: smartencoderencoder
+              above: 0.5
+          then:
+            - sensor.rotary_encoder.set_value:
+                id: smartencoderencoder
+                value: 0
+            - light.addressable_set:
+                id: smartencoderleds
+                range_from: 0
+                range_to: 19
+                red: 0%
+                green: 0%
+                blue: 0%
+          else:
+            - sensor.rotary_encoder.set_value:
+                id: smartencoderencoder
+                value: 50
+            - light.addressable_set:
+                id: smartencoderleds
+                range_from: 0
+                range_to: 19
+                red: 0%
+                green: 0%
+                blue: 0%
+            - light.addressable_set:
+                id: smartencoderleds
+                range_from: 9
+                range_to: 17
+                red: 0%
+                green: 30%
+                blue: 0%
+            
+
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    pin: GPIO23
+    num_leds: 20
+    rmt_channel: 0
+    chipset: SK6812
+    name: "SmartEncoderLEDs"
+    id: smartencoderleds
+        
