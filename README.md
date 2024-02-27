@@ -1,6 +1,6 @@
 # SmartEncoder-20xARGB
 
-This "SmartEncoder" uses 20 adressable LEDs (SK6805-EC15 or potentially XL-1615RGBC-WS2812B) to visualize the set point of the encoder. The SmartEncoder boasts WiFI and Bluetooth capability using the ESP32, which makes it viable for Smart Home and PC control applications.<br>
+This "SmartEncoder" uses 20 adressable LEDs (SK6805-EC15 or potentially XL-1615RGBC-WS2812B) to visualize the set point of the encoder. The SmartEncoder boasts WiFi and Bluetooth capability using the ESP32, which makes it viable for Smart Home and PC control applications.<br>
 It should be noted that stock Windows does not normally have the capability to send the current volume level over BT, which is why a PC side software to take care of that will be uploaded  in the future for use as a BT PC volume knob.
 
 <img src="/images/Lightshow.gif" alt="Lightshow" width="400">
@@ -21,7 +21,7 @@ Especially if you don't plan on running intensive animations on the LEDs the 20 
 
 ## 3D printed case
 
-Thanks to [Nedos on Thingiverse](https://www.thingiverse.com/nedosdergolem/) designing a case including two knob versions for you to choose from and anti-bleed part for this project you can simply download the files and print them.<br>
+Thanks to [Nedos on Thingiverse](https://www.thingiverse.com/thing:6506406) designing a case including two knob versions for you to choose from and anti-bleed part for this project you can simply download the files and print them.<br>
 The holes in the knob are meant to be filled with regular 1.75mm diameter transparent filament and either both surfaces cut flush using a side cutter or even sanded down for a better look.<br>
 The anti-bleed part can simply be put on the LEDs making sure not to damage them.<br>
 For assembly you only need the printed parts including spacers and M3x25mm screws, preferably with a flat underside.
